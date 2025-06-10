@@ -45,22 +45,19 @@ switch ($action) {
             exit;
         }
         
-        // Verifica che il prodotto esista (sia nella tabella products che come prodotto esterno)
+        
         $check = $mysqli->prepare("SELECT id FROM products WHERE id = ?");
         $check->bind_param("i", $product_id);
         $check->execute();
         $result = $check->get_result();
         
-        // Se il prodotto non esiste nella tabella products, potrebbe essere un prodotto esterno
-        // In questo caso, creiamo una entry fittizia o gestiamo diversamente
+     
         if ($result->num_rows === 0) {
             error_log("Prodotto $product_id non trovato nella tabella products");
-            // Per ora, permettiamo comunque l'aggiunta ai preferiti anche per prodotti esterni
-            // echo json_encode(['error' => 'Prodotto non esistente']);
-            // exit;
+         
         }
         
-        // Controlla se già nei preferiti
+    
         $stmt = $mysqli->prepare("SELECT id FROM favorites WHERE user_id = ? AND product_id = ?");
         $stmt->bind_param("ii", $user_id, $product_id);
         $stmt->execute();
@@ -128,8 +125,7 @@ switch ($action) {
     case 'get':
     default:
         error_log("Get favorites for user: $user_id");
-        
-        // Ottieni tutti i preferiti con i dettagli del prodotto
+  
         $stmt = $mysqli->prepare("
             SELECT f.*, p.name, p.price, p.image_url, p.description 
             FROM favorites f
