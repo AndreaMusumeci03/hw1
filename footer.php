@@ -1,12 +1,10 @@
 <?php
-// header.php - Solo la sezione header (da includere nelle pagine)
 
-// Parametri opzionali per personalizzare il comportamento
 $page_title = isset($page_title) ? $page_title : 'The North Face';
 $current_page = isset($current_page) ? $current_page : '';
 
 
-// Se non è già stato incluso il DOCTYPE, lo includiamo
+
 if (!isset($html_started)) {
 ?>
 <!DOCTYPE html>
