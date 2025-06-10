@@ -96,11 +96,11 @@ document.addEventListener('DOMContentLoaded', function() {
         totalPriceElement.textContent = `€ ${isNaN(total) ? '0.00' : total.toFixed(2)}`;
         cartCountElement.textContent = data.count || '0';
         
-        // Event listeners per i pulsanti del carrello
+     
         setupCartEventListeners();
     }
     
-    // Funzione separata per gli event listeners del carrello
+   
     function setupCartEventListeners() {
         document.querySelectorAll('.remove-item').forEach(button => {
             button.addEventListener('click', function() {
